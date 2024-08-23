@@ -1,0 +1,7 @@
+name: "@danielgural/game_panel"
+description: Game_Panel
+version: 1.0.0
+fiftyone:
+ version: "*"
+operators:
+ - Game_Panel
