@@ -3,7 +3,6 @@ import fiftyone.operators as foo
 import fiftyone.operators.types as types
 
 GAMES = [
-    "CHESS",
     "DOOM",
     "MINESWEEPER",
     "PAC-MAN",
@@ -11,8 +10,7 @@ GAMES = [
 ]
 
 GAMES_URL = [
-    "https://js-dos.com/games/chess.exe.html",
-    "https://js-dos.com/games/doom.exe.html",
+    "https://thedoggybrad.github.io/doom_on_js-dos/",
     "https://www.minesweeperforfree.com/",
     "https://js-dos.com/games/pac-man.exe.html",
     "https://js-dos.com/games/tetris.com.html"
@@ -39,7 +37,7 @@ class Game_Panel(foo.Panel):
             """
             ### Take a Break & Play a Game!
 
-            Choose between Chess, DOOM, Minesweeper, PAC-MAN, or Tertris!
+            Choose between DOOM, Minesweeper, PAC-MAN, or Tertris!
         """,
             name="md1",
         )
@@ -60,7 +58,7 @@ class Game_Panel(foo.Panel):
             game = ctx.panel.get_state("my_stack.menu.actions.game")
             game_url = GAMES_URL[GAMES.index(game)]
             
-            if game != "MINESWEEPER":
+            if game == "DOOM":
                 stack.define_property(
                     "frame",
                     types.String(),
@@ -75,15 +73,15 @@ class Game_Panel(foo.Panel):
                                 "height": "700px",
                                 "border": "none",
                                 "style": {
-                                    "margin-top": "-60px", 
-                                    "margin-bottom": "-279px",
-                                    "margin-left": "-35px",
-                                    "margin-right": "-22px",
+                                    "margin-top": "-159px",
+                                    "margin-bottom": "-140px",
+                                    "margin-left": "-28px",
+                                    "margin-right": "-28px",
                                 },
                             },
                         },
                     ),
-                )
+        )
             elif game == "MINESWEEPER":
                 stack.define_property(
                     "frame",
@@ -107,6 +105,31 @@ class Game_Panel(foo.Panel):
                         },
                     ),
                 )
+            else:
+                stack.define_property(
+                    "frame",
+                    types.String(),
+                    view=types.HeaderView(
+                        label="x",
+                        componentsProps={
+                            "headingsContainer": {"overflow": "hidden"},
+                            "label": {
+                                "component": "iframe",
+                                "src": game_url,
+                                "width": "700px",
+                                "height": "700px",
+                                "border": "none",
+                                "style": {
+                                    "margin-top": "-60px", 
+                                    "margin-bottom": "-279px",
+                                    "margin-left": "-35px",
+                                    "margin-right": "-22px",
+                                },
+                            },
+                        },
+                    ),
+                )
+            
         return types.Property(panel, view=types.GridView())
     
     def on_change_config(self, ctx):
