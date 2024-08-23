@@ -1,0 +1,7 @@
+name: "@danielgural/doom"
+description: Model Evaluation Panel
+version: 1.0.0
+fiftyone:
+ version: "*"
+operators:
+ - DOOM
